@@ -1,0 +1,82 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar" style="background-color: currentColor !important;">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand waves-effect" [routerLink]="['/']">
+      <img src="assets/images/logo-removebg-preview.png" style="width:125px" alt="">
+    </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Hi!
+        <a class="nav-link waves-light  pink-text p-0" href="#">Sign In</a>
+        or
+        <a class="nav-link waves-light  pink-text p-0" href="#">Register</a> -->
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-effect" href="#" style="color: #FAF2A4;"><strong>Home</strong>
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <ng-container *ngIf="isLogged; else elseTemplate">
+          <li class="nav-item" mdbDropdown>
+            <a class="nav-link waves-effect" [routerLink]="['/customer/my-account']">
+              <i class="fas fa-user mr-1 pink-text"></i>
+              <strong style="color: #FAF2A4;">{{user.FullName}}</strong>
+            </a>
+          </li>
+          <li class="nav-item" mdbDropdown>
+            <a class="nav-link waves-effect" (click)="onLogout()">
+              <i class="fas fa-sign-in-alt mr-1 pink-text"></i>
+              <strong style="color: #FAF2A4;">Logout</strong>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" [routerLink]="['/products']">
+              <strong style="color: #FAF2A4;">Product</strong>
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <li class="nav-item" mdbDropdown>
+            <a class="nav-link waves-effect" [routerLink]="['/customer/login']">
+              <strong style="color: #FAF2A4;">Sign In</strong>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" [routerLink]="['/products']">
+              <strong style="color: #FAF2A4;">Product</strong>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" [routerLink]="['/customer/register']" target="_blank">
+              <strong style="color: #FAF2A4;">Register</strong>
+            </a>
+          </li>
+        </ng-template>
+
+
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item" mdbDropdown>
+          <a class="nav-link waves-effect dropdown-toggle" mdbDropdownToggle>
+            <!-- [routerLink]="['shopping-cart']" -->
+            <span class="badge red z-depth-1 mr-1"> {{itemCount}} </span>
+            <i style="color: #FAF2A4;" class="fas fa-shopping-cart"></i>
+            <span style="color: #FAF2A4;" class="clearfix d-none d-sm-inline-block"> Cart </span>
+          </a>
+          <app-small-cart class="dropdown-menu dropdown-cart mr-5 pb-0" *ngIf="itemCount != 0"></app-small-cart>
+      </ul>
+    </div>
+
+  </div>
+</nav>
